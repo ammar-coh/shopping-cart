@@ -5,8 +5,9 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import { useDispatch } from "react-redux";
-import {increment} from './redux/actions';
+import { useDispatch} from "react-redux";
+import {addToCart, increment} from './redux/actions';
+
 
 
 const useStyles = makeStyles({
@@ -31,16 +32,18 @@ const useStyles = makeStyles({
 
 
 
-export default function Item({image}) {
+ function Item(props) {
+  console.warn('props',props)
   const classes = useStyles();
-  const dispatch=useDispatch(increment())
+  //const dispatch=useDispatch()
+  //const add=useDispatch()
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-         image={image}
+         image='https://readings.com.pk/Pages/Categories/BookImages/9780241314333.jpg'
           title="Contemplative Reptile"
         />
         {/*<CardContent>
@@ -54,7 +57,7 @@ export default function Item({image}) {
         </CardContent>*/}
       </CardActionArea>
       <CardActions>
-        <Button onClick = {()=>dispatch(increment()) } className= {classes.cart} size="small" >
+        <Button onClick={()=>props.addtoCartHandler({price:100,name:'i phone 11'})} className= {classes.cart} size="small" >
         Add to Cart
         </Button>
        
@@ -62,3 +65,5 @@ export default function Item({image}) {
     </Card>
   );
 }
+
+export default  (Item)

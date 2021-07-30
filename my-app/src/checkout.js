@@ -1,11 +1,18 @@
-import React from 'react'
+import React from 'react';
+import Checkoutproduct from './checkoutProduct'
 
-function checkout() {
+
+
+
+
+function Checkout() {
+  
+    
     return (
-        <div>
-            
-        </div>
+       <div>
+         <Checkoutproduct/>
+       </div>
     )
 }
 
-export default checkout
+export default Checkout

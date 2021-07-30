@@ -25,7 +25,8 @@ const useStyles = makeStyles({
 
 function Cart() {
     const classes = useStyles()
-    const counts= useSelector((state)=> state.cart.count)
+    const counts= useSelector((state)=> state.checkout.length)
+   
     return (
 
         <div className={classes.root}>
