@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkoutproduct from './checkoutProduct';
+import CheckoutContainer from './CheckoutContainer';
 import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -28,7 +28,7 @@ function Checkout() {
     return (
        <div className={classes.root}>
          { counts.map(i=>(
-         <Checkoutproduct image={i.cart.image}/>)
+         <CheckoutContainer image={i.cart.image}/>)
         
          )
         }

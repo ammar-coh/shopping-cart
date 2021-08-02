@@ -29,8 +29,8 @@ const useStyles = makeStyles({
     },
   });
 
-function Checkoutproduct({image}) {
-  console.warn('matrial',{image})
+function Checkoutproduct(props) {
+ // console.warn('matrial',props)
     const classes = useStyles();
    
 
@@ -39,8 +39,8 @@ function Checkoutproduct({image}) {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-           image={image}
-            title="Contemplative Reptile"
+           image={props.image}
+           
           />
           {/*<CardContent>
             <Typography gutterBottom variant="h5" component="h2">
@@ -53,7 +53,7 @@ function Checkoutproduct({image}) {
           </CardContent>*/}
         </CardActionArea>
         <CardActions>
-          <Button  className= {classes.cart} size="small" >
+          <Button onClick={()=>props. removefromCartHandler({delete:props.image})} className= {classes.cart} size="small" >
          Remove from Cart
           </Button>
          
