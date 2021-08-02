@@ -31,12 +31,14 @@ const useStyles = makeStyles({
 
 function Checkoutproduct() {
     const classes = useStyles();
+    const check= useSelector((state)=> state.checkout.cart)
+
     return (
         <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-           //image={image}
+           image={check}
             title="Contemplative Reptile"
           />
           {/*<CardContent>

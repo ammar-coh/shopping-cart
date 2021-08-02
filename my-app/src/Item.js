@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 
 
  function Item(props) {
-  console.warn('props',props)
+  //console.warn('props',props)
   const classes = useStyles();
   //const dispatch=useDispatch()
   //const add=useDispatch()
@@ -43,7 +43,7 @@ const useStyles = makeStyles({
       <CardActionArea>
         <CardMedia
           className={classes.media}
-         image='https://readings.com.pk/Pages/Categories/BookImages/9780241314333.jpg'
+         image={props.image}
           title="Contemplative Reptile"
         />
         {/*<CardContent>
@@ -57,7 +57,7 @@ const useStyles = makeStyles({
         </CardContent>*/}
       </CardActionArea>
       <CardActions>
-        <Button onClick={()=>props.addtoCartHandler({price:100,name:'i phone 11'})} className= {classes.cart} size="small" >
+        <Button onClick={()=>props.addtoCartHandler({image:props.image})} className= {classes.cart} size="small" >
         Add to Cart
         </Button>
        

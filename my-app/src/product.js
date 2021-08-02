@@ -15,8 +15,8 @@ function Product() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-           <ItemContainer /> 
-           <ItemContainer /> 
+           <ItemContainer image='https://readings.com.pk/Pages/Categories/BookImages/9780241314333.jpg' /> 
+           <ItemContainer image='https://pisces.bbystatic.com/image2/BestBuy_US/images/products/3463/34632582_so.jpg'/> 
            
         </div>
     )
