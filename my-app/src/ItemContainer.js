@@ -6,7 +6,7 @@ import { useDispatch,connect } from "react-redux";
 
 
 const mapStateToProps=(state)=>({
-           cart:state.checkout
+           data:state.checkout
 })
 const mapDispatchToProps=dispatch=>({
     addtoCartHandler:data=>dispatch(addToCart(data))

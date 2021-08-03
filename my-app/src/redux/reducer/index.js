@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
-import {counter} from './counterReducer'
+import {changedMyMind} from './changedMyMind'
 import {checkoutreducer} from './checkoutReducer'
 
 
   const reducer= combineReducers({
-            cart:counter,
-            checkout:checkoutreducer
+           checkout:checkoutreducer,
+           changedMyMind: changedMyMind
 })
 
 export default (reducer)

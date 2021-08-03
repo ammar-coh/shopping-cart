@@ -16,13 +16,20 @@ function Product() {
     return (
         <div>
         <div className={classes.root}>
-           <ItemContainer image='https://readings.com.pk/Pages/Categories/BookImages/9780241314333.jpg' /> 
-           <ItemContainer image='https://pisces.bbystatic.com/image2/BestBuy_US/images/products/3463/34632582_so.jpg'/> 
-           <ItemContainer image='https://m.media-amazon.com/images/I/41MaZ077hyL.jpg'/> 
-           <ItemContainer image='https://m.media-amazon.com/images/I/51zfjwXFRrL._SY445_.jpg'/> 
-           <ItemContainer image='https://m.media-amazon.com/images/I/81kJ69lDGIL._SL1500_.jpg'/> 
-           <ItemContainer image='https://upload.wikimedia.org/wikipedia/en/thumb/7/74/The_Big_Bang_Theory_Season_2.jpg/220px-The_Big_Bang_Theory_Season_2.jpg'/> 
-           <ItemContainer image='https://cdn.hmv.com/r/w-640/hmv/files/5f/5fcdbd5a-10df-47ea-b310-68c62c6dd017.jpg'/> 
+           <ItemContainer image='https://readings.com.pk/Pages/Categories/BookImages/9780241314333.jpg' 
+                          price={60}/> 
+           <ItemContainer image='https://pisces.bbystatic.com/image2/BestBuy_US/images/products/3463/34632582_so.jpg'
+                          price={40}/> 
+           <ItemContainer image='https://m.media-amazon.com/images/I/41MaZ077hyL.jpg'
+                          price={24}/> 
+           <ItemContainer image='https://m.media-amazon.com/images/I/51zfjwXFRrL._SY445_.jpg'
+                          price={55}/> 
+           <ItemContainer image='https://m.media-amazon.com/images/I/81kJ69lDGIL._SL1500_.jpg'
+                          price={69}/> 
+           <ItemContainer image='https://upload.wikimedia.org/wikipedia/en/thumb/7/74/The_Big_Bang_Theory_Season_2.jpg/220px-The_Big_Bang_Theory_Season_2.jpg'
+                          price={19}/> 
+           <ItemContainer image='https://cdn.hmv.com/r/w-640/hmv/files/5f/5fcdbd5a-10df-47ea-b310-68c62c6dd017.jpg'
+                          price={27}   /> 
            </div>
            <div className={classes.root}>
            <ItemContainer image='https://images-na.ssl-images-amazon.com/images/I/A1qhBebbu6L.jpg' /> 

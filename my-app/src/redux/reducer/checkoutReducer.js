@@ -14,11 +14,11 @@ export const checkoutreducer= (state=[],actions)=>{
            var index = state.findIndex(function(i){
                     return i.cart.image === actions.data.delete
            }) 
-           console.log('index',index)
+           //console.log('index',index)
             var final = state.splice(index,1)
            
            var state= state 
-           console.log(state)
+         //  console.log(state)
             return[
                 ...state]
             

@@ -7,6 +7,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import { useDispatch} from "react-redux";
 import {addToCart, increment} from './redux/actions';
+import Typography from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
 
 
 
@@ -28,6 +30,9 @@ const useStyles = makeStyles({
       marginLeft:50,
       fontSize:'10px',
   },
+  price:{
+    marginLeft:36,
+  }
 });
 
 
@@ -46,18 +51,19 @@ const useStyles = makeStyles({
          image={props.image}
           title="Contemplative Reptile"
         />
-        {/*<CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
+        <CardContent>
+          <Typography  className={classes.price} gutterBottom variant="h7" component="h2">
+           Price $ {props.price}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+         {/**  <Typography variant="body2" color="textSecondary" component="p">
             Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
             across all continents except Antarctica
-          </Typography>
-        </CardContent>*/}
+          </Typography>*/}
+        </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button onClick={()=>props.addtoCartHandler({image:props.image})} className= {classes.cart} size="small" >
+        <Button onClick={()=>props.addtoCartHandler({image:props.image,
+        price:props.price})} className= {classes.cart} size="small" >
         Add to Cart
         </Button>
        

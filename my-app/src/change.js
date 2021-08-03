@@ -1,19 +1,17 @@
 import React from 'react';
-import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import { useDispatch } from "react-redux";
 
 
 const useStyles = makeStyles({
     root: {
       maxWidth: 345,
       marginLeft:50,
-      marginTop:30,
+      marginTop:100,
       width:'200px',
     },
     media: {
@@ -29,17 +27,17 @@ const useStyles = makeStyles({
     },
   });
 
-function Checkoutproduct(props) {
- // console.warn('matrial',props)
+
+function Change(props) {
     const classes = useStyles();
    
-
     return (
-        <Card className={classes.root}>
+        <div>
+             <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-           image={props.image}
+          image={props.image}
            
           />
           {/*<CardContent>
@@ -53,13 +51,14 @@ function Checkoutproduct(props) {
           </CardContent>*/}
         </CardActionArea>
         <CardActions>
-          <Button onClick={()=>props. removefromCartHandler({delete:props.image})} className= {classes.cart} size="small" >
+          <Button onClick={()=>props.returnToCartHandler({image:props.image})} className= {classes.cart} size="small" >
          Remove from Cart
           </Button>
          
         </CardActions>
       </Card>
+        </div>
     )
 }
 
-export default Checkoutproduct
+export default Change
