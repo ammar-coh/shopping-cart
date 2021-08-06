@@ -63,7 +63,8 @@ function Checkout() {
        <div className={classes.root}>
          <h3 className={classes.head}>Cart</h3>
          { counts.map(i=>(
-         <CheckoutContainer image={i.cart.image}/>)
+         <CheckoutContainer image={i.cart.image}
+                            price={i.cart.price}/>)
         
          )
         }

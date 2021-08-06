@@ -17,10 +17,19 @@ export const changedMyMind= (state=[],actions)=> {
             return[
                 ...state,{removedItem:actions.data}]
             case 'addToCart' :
-                console.log(state)
+                
+            //console.log(actions.data)
+           // console.log(state)
                 var index = state.findIndex((i)=>{
-                    return 
+                    return i.removedItem.delete===actions.data.image
                 })
+              //  console.log('index',index)
+                var modifiedArray= state.splice(index,1)  
+                var state=state
+                return [
+                    ...state
+                ]
+                
             
         default:
             return state

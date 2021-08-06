@@ -7,6 +7,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import { useDispatch } from "react-redux";
+import Typography from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
 
 
 const useStyles = makeStyles({
@@ -42,6 +44,15 @@ function Checkoutproduct(props) {
            image={props.image}
            
           />
+           <CardContent>
+          <Typography  className={classes.price} gutterBottom variant="h7" component="h2">
+           Price $ {props.price}
+          </Typography>
+         {/**  <Typography variant="body2" color="textSecondary" component="p">
+            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+            across all continents except Antarctica
+          </Typography>*/}
+        </CardContent>
           {/*<CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               Lizard
@@ -53,7 +64,8 @@ function Checkoutproduct(props) {
           </CardContent>*/}
         </CardActionArea>
         <CardActions>
-          <Button onClick={()=>props. removefromCartHandler({delete:props.image})} className= {classes.cart} size="small" >
+          <Button onClick={()=>props. removefromCartHandler({delete:props.image,
+                                                              price:props.price})} className= {classes.cart} size="small" >
          Remove from Cart
           </Button>
          

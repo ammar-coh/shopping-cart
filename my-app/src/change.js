@@ -5,6 +5,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
 
 
 const useStyles = makeStyles({
@@ -40,6 +42,15 @@ function Change(props) {
           image={props.image}
            
           />
+            <CardContent>
+          <Typography  className={classes.price} gutterBottom variant="h7" component="h2">
+           Price $ {props.price}
+          </Typography>
+         {/**  <Typography variant="body2" color="textSecondary" component="p">
+            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+            across all continents except Antarctica
+          </Typography>*/}
+        </CardContent>
           {/*<CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               Lizard
@@ -51,7 +62,8 @@ function Change(props) {
           </CardContent>*/}
         </CardActionArea>
         <CardActions>
-          <Button onClick={()=>props.returnToCartHandler({image:props.image})} className= {classes.cart} size="small" >
+          <Button onClick={()=>props.returnToCartHandler({image:props.image,
+          price:props.price})} className= {classes.cart} size="small" >
          Remove from Cart
           </Button>
          

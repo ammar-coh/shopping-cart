@@ -8,7 +8,8 @@ function Changecontainer() {
     return (
         <div>
             {change.map(i=>(
-                <Cc image={i.removedItem.delete}/>)
+                <Cc image={i.removedItem.delete}
+                    price={i.removedItem.price}/>)
             )}
         </div>
     )
