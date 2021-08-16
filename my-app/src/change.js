@@ -64,7 +64,7 @@ function Change(props) {
         <CardActions>
           <Button onClick={()=>props.returnToCartHandler({image:props.image,
           price:props.price})} className= {classes.cart} size="small" >
-         Remove from Cart
+         Changed my Mind
           </Button>
          
         </CardActions>
