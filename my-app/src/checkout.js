@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
   root: {
     
-    marginLeft:'-450px',
+    marginLeft:'-150px',
  
     marginTop:100,
     width:'400px',
@@ -33,7 +33,7 @@ const useStyles = makeStyles({
   mind:{
    
     width:'400px',
-    marginLeft:'1050px',
+    marginLeft:'850px',
    
   },
   head:{

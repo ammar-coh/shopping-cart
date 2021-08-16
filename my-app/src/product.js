@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     root: {
      display:'flex',
    
-    marginLeft:70,
+    marginLeft:0,
     },
     
   });
