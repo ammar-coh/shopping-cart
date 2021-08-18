@@ -17,21 +17,22 @@ const useStyles = makeStyles({
     maxWidth: 345,
     marginLeft:50,
     marginTop:100,
-    width:'200px',
+    width:'350px',
   },
   media: {
-    width:'150px',
-    height:'250px',
+    width:'90px',
+    height:'150px',
     marginLeft:27,
   },
   cart:{
       backgroundColor:'#FF9900',
       color:'#000000',
-      marginLeft:50,
+      marginLeft:22,
       fontSize:'10px',
   },
   price:{
-    marginLeft:36,
+    marginLeft:13,
+    fontSize:'15px',
   }
 });
 

@@ -1,7 +1,7 @@
 
 import Item from './Item'
 import {addToCart} from './redux/actions';
-import { useDispatch,connect } from "react-redux";
+import { connect } from "react-redux";
 
 
 

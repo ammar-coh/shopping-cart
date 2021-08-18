@@ -25,15 +25,23 @@ export const removeFromCart =(data)=>{
      }
  }
 
- export const getUser=()=>{
+ export const getUser=(data)=>{
     return{
-                type:'get'
+                type:'get',
+                data:data
     }
 }
 export const setUser=(details)=>{
     return{
                 type:'set',
                 details:details
+    }
+}
+
+export const updateUser=(data)=>{
+    return {
+        type:'update',
+            data:data
     }
 }
  
