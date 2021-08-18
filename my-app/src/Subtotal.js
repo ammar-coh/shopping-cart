@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   
 
 function Subtotal() {
-    const classes = useStyles();
+   // const classes = useStyles();
     const counts= useSelector((state)=> state.checkout)
     //console.log(counts)
     var dollar = counts.map(function(i){
@@ -25,7 +25,7 @@ function Subtotal() {
     //console.log(sum)
     return (
         <div>
-           <h3>${sum}</h3> 
+           <h3>${sum.toFixed(2)}</h3> 
         </div>
     )
 }

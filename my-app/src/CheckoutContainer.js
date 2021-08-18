@@ -1,6 +1,6 @@
 import Checkoutproduct from './checkoutProduct'
 import {removeFromCart} from './redux/actions';
-import { useDispatch,connect } from "react-redux";
+import { connect } from "react-redux";
 
 
 

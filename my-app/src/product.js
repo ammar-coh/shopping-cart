@@ -3,6 +3,7 @@ import {getUser} from './redux/actions/index'
 import { makeStyles } from '@material-ui/core/styles';
 import ItemContainer from './ItemContainer';
 import { useSelector, useDispatch } from "react-redux";
+import EntryContainer from './EntryContainer'
 const useStyles = makeStyles({
     root: {
      display:'flex',
@@ -21,7 +22,7 @@ function Product() {
     },[dispatch])
     const details=useSelector((state)=>state.productDetails.details);
     //const {image}= details
-   console.log(details)
+   //console.log(details)
     return (
         <div>
         <div className={classes.root}>
@@ -39,7 +40,17 @@ function Product() {
             ))}
         </div>
 
+        <div className={classes.root}>
+            {details && details.map(i=>(
+                i.id >= 16 && i.id<=21 ?
+                <ItemContainer image ={i.image}
+                price= {i.price}/> : null
+            ))}
+        </div>
 
+        <div>
+            <EntryContainer/>
+        </div>
 
            
         </div>
