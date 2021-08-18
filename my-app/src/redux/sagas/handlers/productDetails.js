@@ -12,3 +12,17 @@ export function* handleGetUser(action){
     console.log(error)
 }
 }
+
+export function* updateUser(action){
+    try{
+        const response = yield call(requestGetUser)
+        const {data} =response
+        yield put(setUser(data))
+} catch(error){
+    console.log(error)
+}
+}
+
+
+//const response = yield call(requestGetUser)
+//const {data} =response
