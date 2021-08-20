@@ -6,3 +6,10 @@ export function requestGetUser(){
         url:'http://localhost:3001/productDetails',
     })
 }
+
+export function requestUpdateUser(){
+    return axios.request({
+        method:'put',
+        url:'http://localhost:3001/productDetails',
+    })
+}

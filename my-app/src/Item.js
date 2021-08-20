@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -33,14 +33,27 @@ const useStyles = makeStyles({
   price:{
     marginLeft:13,
     fontSize:'15px',
+  },
+  input:{
+    width:'50px'
   }
 });
 
 
 
  function Item(props) {
-  //console.warn('props',props)
+  
   const classes = useStyles();
+  //const dispatch = useDispatch();
+  const [price,setPrice] = useState('')
+ 
+
+//console.log ('data',data)
+const getPrice=(event)=>{
+   setPrice(event.target.value)
+}
+  //console.warn('props',props)
+  
   //const dispatch=useDispatch()
   //const add=useDispatch()
 
@@ -67,6 +80,12 @@ const useStyles = makeStyles({
         price:props.price})} className= {classes.cart} size="small" >
         Add to Cart
         </Button>
+     
+           <input className={classes.input} type = 'number' onChange={getPrice}/> 
+          
+           <button onClick={()=>props.updateData({id:props.id,
+        price:price})}>click here</button>
+       
        
       </CardActions>
     </Card>

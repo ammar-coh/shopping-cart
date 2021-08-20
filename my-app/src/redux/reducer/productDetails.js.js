@@ -12,9 +12,7 @@ export const productDetails =(state=initialState,actions)=>{
             }
         
             return check
-        case 'update' :
-            console.log('state',state)
-            return state
+    
         
        
         default:

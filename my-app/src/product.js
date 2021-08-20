@@ -29,14 +29,16 @@ function Product() {
            {details && details.map(i=>(
                i.id<=7 ?
                <ItemContainer image ={i.image}
-               price= {i.price}/> : null
+               price= {i.price}
+               id={i.id}/> : null
            ))}
         </div>
         <div className={classes.root}>
             {details && details.map(i=>(
                 i.id >= 8  && i.id<=14 ?
                 <ItemContainer image ={i.image}
-                price= {i.price}/> : null
+                price= {i.price}
+                id={i.id}/> : null
             ))}
         </div>
 
@@ -44,7 +46,8 @@ function Product() {
             {details && details.map(i=>(
                 i.id >= 16 && i.id<=21 ?
                 <ItemContainer image ={i.image}
-                price= {i.price}/> : null
+                price= {i.price}
+                id={i.id}/> : null
             ))}
         </div>
 

@@ -1,17 +1,17 @@
 import {call,put,delay} from 'redux-saga/effects';
-//import {requestGetUser} from '../requests/productDetails';
+import {requestGetUser, requestUpdateUser} from '../requests/productDetails';
 import { setUser,updateUser} from '../../actions/index';
 
 
-export function* handleGetUser(action){
+export function* handleGetUser(){
   //const [data]= action
-  const check = action
-  console.warn('df',check)
+ 
     try{
     
-      yield delay(2000)
+     
        
-        // const response = yield call(requestGetUser)
+        //const response = yield call(requestGetUser)
+        yield delay(2000)
         const info =[{image:'https://readings.com.pk/Pages/Categories/BookImages/9780241314333.jpg',
         price:30,
       id:1}, 
@@ -59,18 +59,11 @@ export function* handleGetUser(action){
       id:15},
           
       ]
-        
-     const updated=()=>{
-       //console.log(check.data)
-       
-       return info
-      
-
-
-
-     }
+    
+     
+     
      // console.log(updated())
-        yield put(setUser(updated()))
+        yield put(setUser(info))
 } catch(error){
     console.log(error)
 }
@@ -81,17 +74,29 @@ export function* handleGetUser(action){
 
 export function* updateInfo(action){
   //const [data]= action
-  console.log('de', action.details)
-  
-  if(action.data !== undefined){
-    console.log(action.details.filter(person => person.id === action.data.id))
-    }
-    try{
+ // console.log('de', action.details)
+  //console.log('flow', data)
+ //console.log('check', action.data)
  
+ //console.log(action.data.price)
+
+    try{
+        if(action.data!== undefined  ){
+           console.log(action.data.price)
+          
+           console.log(action.details)
+        }
+      
+        {/*const result = yield call (requestUpdateUser(action.data))
         // const response = yield call(requestGetUser)
-    
+        if(result === true && action.data!==undefined){
+           yield put(updateUser({ 
+            type:'update',
+                data:action.data
+        }))
+        }*/}
      // console.log(updated())
-        yield put()
+        
 } catch(error){
     console.log(error)
 }
