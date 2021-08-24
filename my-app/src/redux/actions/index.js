@@ -7,7 +7,7 @@ export const increment =() =>{
     };
 }
 export const addToCart =(data)=>{
-  // console.warn('actions',data)
+  console.warn('actions',data)
     return {
                 type:'addToCart',
                 data:data
@@ -44,4 +44,36 @@ export const updateUser=(data)=>{
             data:data
     }
 }
- 
+
+export const updateUserDetails=(data)=>{
+    return {
+        type:'updateDetails',
+            data:data
+    }
+}
+export const deleteDispatch =(data)=>{
+    return {
+        type:'delete',
+        data:data
+    }
+}
+
+export const deleteDetails =(data)=>{
+    return {
+        type:'deleteDetails',
+        data:data
+    }
+}
+
+export const addToSaga =(data)=>{
+    return {
+        type:'add',
+        data:data
+    }
+}
+export const addToReducer =(data)=>{
+    return {
+        type:'addDetails',
+        data:data
+    }
+}

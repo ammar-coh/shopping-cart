@@ -10,7 +10,7 @@ export const checkoutreducer= (state=[],actions)=>{
             ]
         case 'removeFromCart':
            // var index= state.indexOf(actions.data.delete)
-           // console.log('state',state)
+            console.log('state',state)
            var index = state.findIndex(function(i){
                     return i.cart.image === actions.data.delete
            }) 

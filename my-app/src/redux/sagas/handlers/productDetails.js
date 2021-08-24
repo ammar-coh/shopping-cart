@@ -1,6 +1,7 @@
 import {call,put,delay} from 'redux-saga/effects';
-import {requestGetUser, requestUpdateUser} from '../requests/productDetails';
-import { setUser,updateUser} from '../../actions/index';
+import {requestGetUser, } from '../requests/productDetails';
+import { setUser, updateUserDetails,deleteDetails,addToReducer} from '../../actions/index';
+
 
 
 export function* handleGetUser(){
@@ -10,8 +11,8 @@ export function* handleGetUser(){
     
      
        
-        //const response = yield call(requestGetUser)
-        yield delay(2000)
+        // const response = yield call(requestGetUser)
+        yield delay(1000)
         const info =[{image:'https://readings.com.pk/Pages/Categories/BookImages/9780241314333.jpg',
         price:30,
       id:1}, 
@@ -60,8 +61,8 @@ export function* handleGetUser(){
           
       ]
     
-     
-     
+    //  const{data}= response
+    //console.log('api1',data)
      // console.log(updated())
         yield put(setUser(info))
 } catch(error){
@@ -73,31 +74,34 @@ export function* handleGetUser(){
 
 
 export function* updateInfo(action){
-  //const [data]= action
- // console.log('de', action.details)
-  //console.log('flow', data)
- //console.log('check', action.data)
- 
- //console.log(action.data.price)
 
-    try{
-        if(action.data!== undefined  ){
-           console.log(action.data.price)
-          
-           console.log(action.details)
-        }
-      
-        {/*const result = yield call (requestUpdateUser(action.data))
-        // const response = yield call(requestGetUser)
-        if(result === true && action.data!==undefined){
-           yield put(updateUser({ 
-            type:'update',
-                data:action.data
-        }))
-        }*/}
-     // console.log(updated())
-        
-} catch(error){
-    console.log(error)
+  //console.log('action', action.data)
+  try {
+   
+    yield put(updateUserDetails(action.data))
+} catch (error) {
+  
+}
+}
+
+export function* deleteInfo(action){
+
+  //console.log('action', action.data)
+  try {
+   
+    yield put(deleteDetails(action.data))
+} catch (error) {
+  
+}
+}
+
+export function* addItemInfo(action){
+
+  console.log('year',action.data)
+  try {
+   
+    yield put(addToReducer(action.data))
+} catch (error) {
+  
 }
 }

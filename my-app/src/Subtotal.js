@@ -17,15 +17,17 @@ function Subtotal() {
     const counts= useSelector((state)=> state.checkout)
     //console.log(counts)
     var dollar = counts.map(function(i){
+      console.log('total',i.cart.price)
                 return i.cart.price
     })
     //console.log(dollar)
    
     const sum = dollar.reduce((a,b)=>a+b,0)
     //console.log(sum)
+     const total = sum
     return (
         <div>
-           <h3>${sum.toFixed(2)}</h3> 
+           <h3>${total}</h3> 
         </div>
     )
 }

@@ -1,19 +1,19 @@
 
 import Item from './Item'
-import {addToCart,updateUser} from './redux/actions';
-import { connect } from "react-redux";
+// import {addToCart,updateUser,deleteDispatch} from './redux/actions';
+// import { connect } from "react-redux";
 
 
 
-const mapStateToProps=(state)=>({
-           data:state.checkout
-})
-const mapDispatchToProps=dispatch=>({
-    addtoCartHandler:data=>dispatch(addToCart(data)),
+// const mapStateToProps=(state)=>({
+//            data:state.checkout
+// })
+// const mapDispatchToProps=dispatch=>({
+//     addtoCartHandler:data=>dispatch(addToCart(data)),
 
-    updateData:data=>dispatch(updateUser(data))
-    
-  })
+//     updateData:data=>dispatch(updateUser(data)),
+//     deleteData:data=>dispatch(deleteDispatch(data))
+//   })
   
   
     
@@ -22,4 +22,4 @@ const mapDispatchToProps=dispatch=>({
   
 
 
-export default  connect(mapStateToProps,mapDispatchToProps)(Item) 
+export default  Item 

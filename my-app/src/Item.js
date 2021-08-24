@@ -5,19 +5,22 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import { useDispatch} from "react-redux";
-import {addToCart, increment} from './redux/actions';
+
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-
+import {addToCart,updateUser,deleteDispatch} from './redux/actions';
+import {FaStar} from 'react-icons/fa'
+import { useSelector, useDispatch } from "react-redux";
 
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
-    marginLeft:50,
+    
+    marginLeft:10,
     marginTop:100,
-    width:'350px',
+    width:'750px',
+    height:'300px',
+   
   },
   media: {
     width:'90px',
@@ -35,18 +38,44 @@ const useStyles = makeStyles({
     fontSize:'15px',
   },
   input:{
-    width:'50px'
+    width:'60px',
+    marginTop:10,
+    marginLeft:22,
   }
 });
+const colors = {
+  orange:'#FFBA5A',
+  grey:'#a9a9a9',
+
+}
 
 
 
  function Item(props) {
-  
-  const classes = useStyles();
+   const ratings= Array(5).fill(0)
+  const [currentRating,setRating] = useState(0);
+  const[currentHoverValue,setHoverValue] = useState(undefined)
+  const [rats,setRats]=useState(props.rating);
+  //console.log(rats)
+  const handleRats=(value)=>{
+          setRats(value)
+  }
+ // console.log(rats)
+
+  const handleClickRat =(value)=>{
+              setRating(value)
+  }
+  const handleHover =(v)=>{
+    setHoverValue(v)
+}
+const handleMouseLeave =()=>{
+  setHoverValue(undefined)
+}
+    const classes = useStyles();
   //const dispatch = useDispatch();
-  const [price,setPrice] = useState('')
- 
+  const [price,setPrice] = useState()
+ const dispatch = useDispatch()
+//  const details=useSelector((state)=>state.productDetails.details);
 
 //console.log ('data',data)
 const getPrice=(event)=>{
@@ -56,6 +85,8 @@ const getPrice=(event)=>{
   
   //const dispatch=useDispatch()
   //const add=useDispatch()
+  var a = parseInt(price)
+  //console.log('number',a)
 
   return (
     <Card className={classes.root}>
@@ -66,6 +97,32 @@ const getPrice=(event)=>{
           title="Contemplative Reptile"
         />
         <CardContent>
+        <Typography   gutterBottom variant="h7" component="h2">
+            {props.year}
+          </Typography>
+
+          <div> {props.rating>=1?ratings.map((_,index) => {
+            return(
+              <FaStar key ={index}
+              color={(props.rating|| rats>index?colors.orange:colors.grey)}
+              onClick={()=>(handleRats(index+1))}
+              onHover={()=>handleHover(index+1)}
+              onMouseLeave={handleMouseLeave}/>
+              
+            )
+          }):ratings.map((_, index) => {
+            return(
+              <FaStar key={index}
+              style={{cursor:'cursor',marginRight:10}}
+              color={(currentRating || currentHoverValue)> index?colors.orange:colors.grey}
+              onClick={()=>handleClickRat(index+1)}
+              onHover={()=>handleHover(index+1)}
+              onMouseLeave={handleMouseLeave}/>
+         
+            )
+         
+          })}</div>
+         
           <Typography  className={classes.price} gutterBottom variant="h7" component="h2">
            Price $ {props.price}
           </Typography>
@@ -76,20 +133,34 @@ const getPrice=(event)=>{
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button onClick={()=>props.addtoCartHandler({image:props.image,
-        price:props.price})} className= {classes.cart} size="small" >
+        <Button onClick={()=>dispatch(addToCart({image:props.image,
+        price:props.price}))} className= {classes.cart} size="small" >
         Add to Cart
         </Button>
+        <Button onClick={()=>dispatch(deleteDispatch( {
+            image:props.image,
+            price:props.price,
+            id:props.id
+          }))
+        } className= {classes.cart} size="small" >
+        Delete
+        </Button>
      
-           <input className={classes.input} type = 'number' onChange={getPrice}/> 
-          
-           <button onClick={()=>props.updateData({id:props.id,
-        price:price})}>click here</button>
        
        
       </CardActions>
+      
+      <input className={classes.input} type = 'number' onChange={getPrice}/> 
+          
+          <button onClick={()=>
+            dispatch(
+              updateUser({
+                id:props.id,
+                price:a})
+            )
+       }>click here</button>
     </Card>
   );
 }
 
-export default  (Item)
+export default  Item

@@ -8,8 +8,5 @@ export function requestGetUser(){
 }
 
 export function requestUpdateUser(){
-    return axios.request({
-        method:'put',
-        url:'http://localhost:3001/productDetails',
-    })
+    return axios.put('http://localhost:3001/productDetails')
 }
