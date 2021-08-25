@@ -3,7 +3,7 @@ import {getUser} from './redux/actions/index'
 import { makeStyles } from '@material-ui/core/styles';
 import ItemContainer from './ItemContainer';
 import { useSelector, useDispatch } from "react-redux";
-import EntryContainer from './EntryContainer';
+
 import Editing from './editing'
 const useStyles = makeStyles({
     root: {
@@ -32,7 +32,7 @@ function Product() {
     const header=useSelector((state)=>state.productDetails.header);
 
     //const {image}= details
-console.log(details,'details')
+//console.log(details,'details')
     return (
         <div>
             <h1>{header}</h1>
@@ -74,13 +74,7 @@ console.log(details,'details')
                 id={i.id}/> : null
             ))}
         </div>
-                    <div className={classes.information}>
-        <div>
-            <EntryContainer/>
-        </div>
-        {/*<div className={classes.edit}><Editing/></div>
-                   </div>*/}
-</div>
+                  
            
         </div>
     )

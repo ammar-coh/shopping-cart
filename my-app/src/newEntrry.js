@@ -11,7 +11,7 @@ import {addToSaga} from './redux/actions/index'
 const useStyles = makeStyles({
     root: {
    
-   
+     
     marginLeft:30,
     },
     disp:{
@@ -54,7 +54,7 @@ function Entry(props) {
    const getRatings=(event)=>{
     setRatings(event.target.value)
 }
-   console.log(rating)
+   //console.log(rating)
    var rat = parseInt(rating)
     return (
         <div className={classes.root}>

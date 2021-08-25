@@ -16,16 +16,24 @@ export const productDetails =(state=initialState,actions)=>{
             return check
 
             case 'updateDetails':
-                //console.log('state',state.details)
+                console.log("initialState",state)
+                console.log('ratingReducer',actions.data)
                 let findIndex=state.details.findIndex((item)=> item.id===actions.data.id)
-//console.log("Reducer",actions.data, findIndex)
+                console.log(findIndex)
+                let findIndexRate=state.details.findIndex((item)=> item.rating)
+             console.log("RatingIndex", findIndexRate)
+            
+                
+             
 
-let newDetails=[...state.details, state.details[findIndex].price=actions.data.price ]
- 
+          //let newDetails=[...state.details, state.details[findIndex].price=actions.data.price ]
+            //let updateRatings =[...state.details,state.details[findIndexRate].rating=actions.data.rate]
+            //console.log([updateRatings],'updated')
+           
         // console.log("details new", newDetails)
         return {
             ...state,  
-            details:newDetails
+            details: actions.data.id == undefined? [...state.details,state.details[findIndexRate].rating=actions.data.rate]:[...state.details, state.details[findIndex].price=actions.data.price ]
             }
             
 
@@ -43,17 +51,17 @@ let newDetails=[...state.details, state.details[findIndex].price=actions.data.pr
         return {details:[...state.details],
         header:'delete'}
     case 'addDetails':
-       //console.log('initial state', state.details)
+      console.log('initial state', state.details)
       var item=actions.data
-       // console.log('item', item)
+        //console.log('item', item)
       var total = state.details.length +1
-       // console.log('total',total)
+     console.log('total',total)
       item.id= total  
-      //console.log('newItem',item)
+      console.log('newItem',item)
       var det= state.details
-     //console.log('det',det)
+     console.log('det',det)
       var newItemsAdded = [...det, item]
-     // console.log('final', newItemsAdded)
+     console.log('final', newItemsAdded)
         return {...state, details:newItemsAdded, 
                 header:'added'}
        

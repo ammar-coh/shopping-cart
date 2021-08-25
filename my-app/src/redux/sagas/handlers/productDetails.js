@@ -75,7 +75,7 @@ export function* handleGetUser(){
 
 export function* updateInfo(action){
 
-  //console.log('action', action.data)
+  //console.log('rateSaga', action.data)
   try {
    
     yield put(updateUserDetails(action.data))
@@ -97,7 +97,7 @@ export function* deleteInfo(action){
 
 export function* addItemInfo(action){
 
-  console.log('year',action.data)
+  //console.log('year',action.data)
   try {
    
     yield put(addToReducer(action.data))
