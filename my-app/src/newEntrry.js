@@ -3,7 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 //import {  useDispatch } from "react-redux";
 //import {getUser} from './redux/actions/index';
 import { useSelector, useDispatch } from "react-redux";
-import {addToSaga} from './redux/actions/index'
+import {addToSaga} from './redux/actions/index';
+import {useFormik} from 'formik';
+
 
 
 
@@ -56,15 +58,29 @@ function Entry(props) {
 }
    //console.log(rating)
    var rat = parseInt(rating)
+
+   const formik = useFormik({
+    initialValues:{
+        link:'',
+        price:'',
+        year:'',
+        ratings:'',
+    },
+    onSubmit: values=>{
+                alert(JSON.stringify(values,null,2))
+    }
+})
+
     return (
         <div className={classes.root}>
              <h1 className={classes.disp}> add</h1>
-           <input className={classes.inputOne} type = 'text' onChange={getData}/>
+            <form onSubmit={formik.handleSubmit}>
+           <input className={classes.inputOne} type = 'text' onChange={formik.handleChange} value={formik.values.link} name='link'/>
            <div> 
-           <input className={classes.inputTwo} type = 'number' onChange={getPrice}/> 
+           <input className={classes.inputTwo} onChange={formik.handleChange} value={formik.values.price} type = 'number'  name='price'/> 
            </div>
            <div>
-           <select  onChange={getYear} className={classes.year}>
+           <select  onChange={formik.handleChange} value={formik.values.year} className={classes.year} name='year'>
            <option value="" default selected>Year of release</option>
            <option value="1999">1999</option>
     <option value="1991">1991</option>
@@ -74,7 +90,7 @@ function Entry(props) {
   </select>
            </div>
            <div>
-        <select onChange={getRatings}className={classes.year}>
+        <select onChange={formik.handleChange} value={formik.values.link}className={classes.year} name='ratings'>
         <option value="" default selected>Ratings</option>
            <option placeholder ='year' value="1">1</option>
             <option value="2">2</option>
@@ -89,6 +105,7 @@ function Entry(props) {
            <div>
            <button className={classes.click} onClick={()=>dispatch(addToSaga({image:data,price:pri,year:year, rating:rat}))}>add item</button>
            </div>
+           </form>
         </div>
     )
 }
