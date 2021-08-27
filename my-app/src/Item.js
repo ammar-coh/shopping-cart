@@ -14,11 +14,11 @@ import { useSelector, useDispatch } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
-    marginLeft: 30,
+  marginLeft:'80px',
     marginTop: 90,
-   
+width:'200px',
     height: "300px",
-  
+    border:'solid black', 
   },
   media: {
     width: "90px",
@@ -39,7 +39,9 @@ const useStyles = makeStyles({
     width: "60px",
     marginTop: 10,
     marginLeft: 22,
+    
   },
+ 
 });
 const colors = {
   orange: "#FFBA5A",
@@ -85,6 +87,7 @@ function Item(props) {
   //console.log('number',a)
 
   return (
+  
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
@@ -100,13 +103,15 @@ function Item(props) {
           <div>
             {props.rating >= 1
               ? ratings.map((_, index) => {
+                  console.log("index", index);
                   return (
                     <FaStar
                       key={index}
                       style={{ cursor: "cursor", marginRight: 10 }}
                       color={props.rating > index ? colors.orange : colors.grey}
-                      onClick={() =>
-                        dispatchTwo(updateUser({ rate: index + 1 }))
+                      onClick={
+                        () => dispatchTwo(updateUser({ rating: index + 1,id: props.id }))
+                        //handleClickRat(index +1)
                       }
                       onHover={() => handleHover(index + 1)}
                       onMouseLeave={handleMouseLeave}
@@ -187,6 +192,7 @@ function Item(props) {
         click here
       </button>
     </Card>
+   
   );
 }
 

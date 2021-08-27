@@ -19,27 +19,30 @@ export const productDetails = (state = initialState, actions) => {
       let findIndex = state.details.findIndex(
         (item) => item.id === actions.data.id
       );
-      console.log(findIndex);
-      let findIndexRate = state.details.findIndex((item) => item.rating);
-      console.log("RatingIndex", findIndexRate);
-
+      // console.log(findIndex);
+      // let findIndexRate = state.details.findIndex((item) => item.rating);
+      // console.log("RatingIndex", findIndexRate);
+      //   state.details[findIndex] = {...state.details[findIndex], ...actions.data}
       //let newDetails=[...state.details, state.details[findIndex].price=actions.data.price ]
       //let updateRatings =[...state.details,state.details[findIndexRate].rating=actions.data.rate]
       //console.log([updateRatings],'updated')
-
-      // console.log("details new", newDetails)
+        let update = state.details.map(el=> {
+          return el.id ===  actions.data.id ? {...el, ...actions.data} : el
+        })
+      console.log("details new", update)
       return {
         ...state,
-        details:
-          actions.data.id === undefined
-            ? [
-                ...state.details,
-                (state.details[findIndexRate].rating = actions.data.rate),
-              ]
-            : [
-                ...state.details,
-                (state.details[findIndex].price = actions.data.price),
-              ],
+        details : update
+        // details:
+        //   actions.data.id === undefined
+        //     ? [
+        //         ...state.details,
+        //         (state.details[findIndexRate].rating = actions.data.rate),
+        //       ]
+        //     : [
+        //         ...state.details,
+        //         (state.details[findIndex].price = actions.data.price),
+        //       ],
       };
 
     case "deleteDetails":

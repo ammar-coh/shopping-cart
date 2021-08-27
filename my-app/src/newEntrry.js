@@ -90,9 +90,9 @@ function Entry(props) {
   </select>
            </div>
            <div>
-        <select onChange={formik.handleChange} value={formik.values.link}className={classes.year} name='ratings'>
+        <select onChange={formik.handleChange} value={formik.values.ratings}className={classes.year} name='ratings'>
         <option value="" default selected>Ratings</option>
-           <option placeholder ='year' value="1">1</option>
+           <option  value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
              <option value="4">4</option>

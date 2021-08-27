@@ -6,9 +6,17 @@ import checkout from './checkout';
 import Sidebar from './sideBar'
 import AddProduct from './addProduct'
 import Del from './Del'
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getUser } from './redux/actions';
 
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
+  
   return (
     <div >
        <Router>

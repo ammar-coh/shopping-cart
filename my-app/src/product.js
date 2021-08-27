@@ -8,47 +8,48 @@ import { useSelector, useDispatch } from "react-redux";
 import Editing from "./editing";
 const useStyles = makeStyles({
   root: {
-    display: "flex",
+    display: "grid",
+    gridGap: '0px 0px',
 
+    gridTemplateColumns: '220px 220px 220px 220px 220px 220px 220px',
     marginLeft: 0,
+    border: "solid black",
+
+   
   },
-  information: {
-    display: "flex",
+
+  edit: { border: "solid black", marginLeft: 50, width: "400px" },
+  fog: {
     border: "solid black",
   },
-  edit: { border: "solid black", marginLeft: 50, width: "400px" },
 });
 
 function Product() {
   const classes = useStyles();
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
   const details = useSelector((state) => state.productDetails.details);
   const header = useSelector((state) => state.productDetails.header);
 
   //const {image}= details
-  //console.log(details,'details')
+  console.log(details, "details");
   return (
     <div>
       <h1>{header}</h1>
-      <Grid container >
-        {details &&
+      <div className={classes.root}>
+        {/*<Grid item>*/}
+        {details.length > 0 &&
           details.map((i) => (
-         
+            <div >
               <ItemContainer
-                image={i.image}
+                image={i?.image}
                 price={i.price}
                 year={i.year}
                 id={i.id}
                 rating={i.rating}
               />
-          
+            </div>
           ))}
-          </Grid>
-     
+      </div>
+      {/**  </Grid>*/}
     </div>
   );
 }
