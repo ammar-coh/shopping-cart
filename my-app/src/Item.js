@@ -14,10 +14,11 @@ import { useSelector, useDispatch } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
-    marginLeft: 10,
+    marginLeft: 30,
     marginTop: 90,
-    width: "750px",
+   
     height: "300px",
+  
   },
   media: {
     width: "90px",

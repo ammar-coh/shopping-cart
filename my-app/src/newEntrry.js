@@ -103,7 +103,7 @@ function Entry(props) {
          
            </div>
            <div>
-           <button className={classes.click} onClick={()=>dispatch(addToSaga({image:data,price:pri,year:year, rating:rat}))}>add item</button>
+           <button className={classes.click} onClick={()=>dispatch(addToSaga({image:formik.values.link,price:formik.values.price,year:formik.values.year, rating:formik.values.ratings}))}>add item</button>
            </div>
            </form>
         </div>
