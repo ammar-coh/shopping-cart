@@ -14,11 +14,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
-  marginLeft:'80px',
+  marginLeft:'0px',
     marginTop: 90,
-width:'200px',
-    height: "300px",
-    border:'solid black', 
+width:'100%',
+    height: "320px",
+   
+    boxSizing: 'border-box',
   },
   media: {
     width: "90px",
@@ -28,7 +29,7 @@ width:'200px',
   cart: {
     backgroundColor: "#FF9900",
     color: "#000000",
-    marginLeft: 22,
+    marginLeft: 12,
     fontSize: "10px",
   },
   price: {

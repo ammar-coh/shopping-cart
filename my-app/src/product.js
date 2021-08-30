@@ -10,10 +10,10 @@ const useStyles = makeStyles({
   root: {
     display: "grid",
     gridGap: '0px 0px',
-
-    gridTemplateColumns: '220px 220px 220px 220px 220px 220px 220px',
+   
+    gridTemplateColumns: '14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%',
     marginLeft: 0,
-    border: "solid black",
+   
 
    
   },
