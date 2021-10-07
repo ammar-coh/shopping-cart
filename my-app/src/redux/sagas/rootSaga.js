@@ -6,9 +6,9 @@ import {handleGetUser,updateInfo,deleteInfo,addItemInfo} from './handlers/produc
  function* watcherSaga(){
   //  yield takeLatest(updateUser,handleGetUser)
     yield takeLatest('get',handleGetUser)
-    yield takeLatest('update',updateInfo)
-    yield takeLatest('delete',deleteInfo)
-    yield takeLatest('add',addItemInfo)
+    // yield takeLatest('update',updateInfo)
+    // yield takeLatest('delete',deleteInfo)
+    // yield takeLatest('add',addItemInfo)
 }
 export  function* rootSaga() {
   yield all([

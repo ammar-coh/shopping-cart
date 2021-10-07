@@ -3,10 +3,7 @@ import axios from 'axios';
 export function requestGetUser(){
     return axios.request({
         method:'get',
-        url:'http://localhost:3001/productDetails',
+        url:'http://localhost:3000/api/v1/products',
     })
 }
 
-export function requestUpdateUser(){
-    return axios.put('http://localhost:3001/productDetails')
-}
