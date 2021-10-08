@@ -12,20 +12,15 @@ export const productDetails = (state = initialState, actions) => {
       };
 
       return check;
-
+     
     case "updateDetails":
+      console.log("updatePrice", actions.data)
       console.log("initialState", state);
-      console.log("ratingReducer", actions.data);
+      console.log("updatepriceReducer", actions.data);
       let findIndex = state.details.findIndex(
         (item) => item.id === actions.data.id
       );
-      // console.log(findIndex);
-      // let findIndexRate = state.details.findIndex((item) => item.rating);
-      // console.log("RatingIndex", findIndexRate);
-      //   state.details[findIndex] = {...state.details[findIndex], ...actions.data}
-      //let newDetails=[...state.details, state.details[findIndex].price=actions.data.price ]
-      //let updateRatings =[...state.details,state.details[findIndexRate].rating=actions.data.rate]
-      //console.log([updateRatings],'updated')
+     
         let update = state.details.map(el=> {
           return el.id ===  actions.data.id ? {...el, ...actions.data} : el
         })
@@ -33,16 +28,8 @@ export const productDetails = (state = initialState, actions) => {
       return {
         ...state,
         details : update
-        // details:
-        //   actions.data.id === undefined
-        //     ? [
-        //         ...state.details,
-        //         (state.details[findIndexRate].rating = actions.data.rate),
-        //       ]
-        //     : [
-        //         ...state.details,
-        //         (state.details[findIndex].price = actions.data.price),
-        //       ],
+
+       
       };
 
     case "deleteDetails":
