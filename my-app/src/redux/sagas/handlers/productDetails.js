@@ -1,5 +1,5 @@
 import {call,put,delay} from 'redux-saga/effects';
-import {requestGetUser,requestUpdateProduct } from '../requests/productDetails';
+import { requestDestroyProduct,requestGetProduct,requestUpdateProduct, requestCreateProduct } from '../requests/productDetails';
 import { getUser, setUser, updateUserDetails,deleteDetails,addToReducer} from '../../actions/index';
 import { ContactlessOutlined } from '@material-ui/icons';
 
@@ -9,7 +9,7 @@ export function* handleGetUser(){
   //const [data]= action
  
     try{
-           const response = yield call(requestGetUser);
+           const response = yield call(requestGetProduct);
             const {data} = response
        
        
@@ -26,34 +26,37 @@ export function* updateInfo(action){
 
   try {
      const response = yield call(requestUpdateProduct,action.data);
-  // console.log('UPDATESaga', action.data)
+  console.log('UPDATESaga', action.data)
   console.log(response.data.data,'response')
 
        yield put(updateUserDetails(response.data.data))
   
 } catch (error) {
-  console.error('this is error',error)
+  //console.error('this is error',error)
 }
 }
 
-// export function* deleteInfo(action){
+export function* deleteInfo(action){
 
-//   //console.log('action', action.data)
-//   try {
-   
-//     yield put(deleteDetails(action.data))
-// } catch (error) {
+  console.log('delete', action.data)
+  try {
+   const response = yield call(requestDestroyProduct,action.data)
+ // const  {data} = response
+  console.log(response.data, "respon")
+    yield put(deleteDetails(response.data))
+} catch (error) {
   
-// }
-// }
+}
+}
 
-// export function* addItemInfo(action){
+export function* addItemInfo(action){
 
-//   //console.log('year',action.data)
-//   try {
-   
-//     yield put(addToReducer(action.data))
-// } catch (error) {
+  console.log('create',action.data)
+  try {
+    const response = yield call(requestCreateProduct,action.data);
+    console.log(response.data, 'created')
+    yield put(addToReducer(response.data))
+} catch (error) {
   
-// }
-// }
+}
+}

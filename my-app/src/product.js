@@ -44,7 +44,7 @@ function Product() {
                 price={i.price}
                 year={i.year}
                 id={i.id}
-                rating={i.rating}
+                rating={i.ratings}
               />
             </div>
           ))}

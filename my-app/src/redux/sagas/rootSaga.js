@@ -7,8 +7,8 @@ import {handleGetUser,updateInfo,deleteInfo,addItemInfo} from './handlers/produc
   //  yield takeLatest(updateUser,handleGetUser)
     yield takeLatest('get',handleGetUser)
      yield takeLatest('update',updateInfo)
-    // yield takeLatest('delete',deleteInfo)
-    // yield takeLatest('add',addItemInfo)
+    yield takeLatest('delete',deleteInfo)
+    yield takeLatest('add',addItemInfo)
 }
 export  function* rootSaga() {
   yield all([

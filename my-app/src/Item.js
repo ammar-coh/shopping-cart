@@ -111,7 +111,7 @@ function Item(props) {
                       style={{ cursor: "cursor", marginRight: 10 }}
                       color={props.rating > index ? colors.orange : colors.grey}
                       onClick={
-                        () => dispatchTwo(updateUser({ rating: index + 1,id: props.id }))
+                        () => dispatchTwo(updateUser({ ratings: index + 1,id: props.id }))
                         //handleClickRat(index +1)
                       }
                       onHover={() => handleHover(index + 1)}
@@ -129,7 +129,8 @@ function Item(props) {
                           ? colors.orange
                           : colors.grey
                       }
-                      onClick={() => handleClickRat(index + 1)}
+                      /*onClick={() => handleClickRat(index + 1)}*/
+                      onClick={() => dispatchTwo(updateUser({ ratings: index + 1,id: props.id }))}
                       onHover={() => handleHover(index + 1)}
                       onMouseLeave={handleMouseLeave}
                     />

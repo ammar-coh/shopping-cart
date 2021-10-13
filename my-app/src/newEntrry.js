@@ -63,8 +63,8 @@ function Entry(props) {
     initialValues:{
         link:'',
         price:'',
-        year:'',
-        ratings:'',
+       /* year:'',
+        ratings:'',*/
     },
     onSubmit: values=>{
                 alert(JSON.stringify(values,null,2))
@@ -79,7 +79,7 @@ function Entry(props) {
            <div> 
            <input className={classes.inputTwo} onChange={formik.handleChange} value={formik.values.price} type = 'number'  name='price'/> 
            </div>
-           <div>
+           {/* <div>
            <select  onChange={formik.handleChange} value={formik.values.year} className={classes.year} name='year'>
            <option value="" default selected>Year of release</option>
            <option value="1999">1999</option>
@@ -88,8 +88,8 @@ function Entry(props) {
     <option value="1994">1994</option>
     
   </select>
-           </div>
-           <div>
+           </div> */}
+           {/* <div>
         <select onChange={formik.handleChange} value={formik.values.ratings}className={classes.year} name='ratings'>
         <option value="" default selected>Ratings</option>
            <option  value="1">1</option>
@@ -98,12 +98,12 @@ function Entry(props) {
              <option value="4">4</option>
              <option value="5">5</option>
         </select>
-           </div>
+           </div> */}
            <div>
          
            </div>
            <div>
-           <button className={classes.click} onClick={()=>dispatch(addToSaga({image:formik.values.link,price:formik.values.price,year:formik.values.year, rating:formik.values.ratings}))}>add item</button>
+           <button className={classes.click}  type="submit" onClick={()=>dispatch(addToSaga({image:formik.values.link,price:formik.values.price,/*year:formik.values.year, rating:formik.values.ratings*/}))}>add item</button>
            </div>
            </form>
         </div>

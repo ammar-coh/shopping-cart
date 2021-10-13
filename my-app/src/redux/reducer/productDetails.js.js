@@ -12,7 +12,7 @@ export const productDetails = (state = initialState, actions) => {
       };
 
       return check;
-     
+
     case "updateDetails":
       console.log("updatePrice", actions.data)
       console.log("initialState", state);
@@ -20,16 +20,16 @@ export const productDetails = (state = initialState, actions) => {
       let findIndex = state.details.findIndex(
         (item) => item.id === actions.data.id
       );
-     
-        let update = state.details.map(el=> {
-          return el.id ===  actions.data.id ? {...el, ...actions.data} : el
-        })
+
+      let update = state.details.map(el => {
+        return el.id === actions.data.id ? { ...el, ...actions.data } : el
+      })
       console.log("details new", update)
       return {
         ...state,
-        details : update
+        details: update
 
-       
+
       };
 
     case "deleteDetails":
@@ -48,10 +48,10 @@ export const productDetails = (state = initialState, actions) => {
       console.log("initial state", state.details);
       var item = actions.data;
       //console.log('item', item)
-      var total = state.details.length + 1;
-      console.log("total", total);
-      item.id = total;
-      console.log("newItem", item);
+      //var total = state.details.length + 1;
+      //console.log("total", total);
+      //item.id = total;
+      //console.log("newItem", item);
       var det = state.details;
       console.log("det", det);
       //   var newItemsAdded =

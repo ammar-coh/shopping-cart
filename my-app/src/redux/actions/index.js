@@ -39,11 +39,13 @@ export const setUser=(details)=>{
 }
 
 export const updateUser=(data)=>{
+    console.log(data,'upppp')
     return {
         type:'update',
             data:data
     }
 }
+
 
 export const updateUserDetails=(data)=>{
     return {
@@ -66,6 +68,7 @@ export const deleteDetails =(data)=>{
 }
 
 export const addToSaga =(data)=>{
+    console.log(data, "saga")
     return {
         type:'add',
         data:data
