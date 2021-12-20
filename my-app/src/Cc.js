@@ -1,5 +1,5 @@
 import { useDispatch,connect } from "react-redux";
-import {addToCart} from './redux/actions';
+import {addToCartReducer} from './redux/actions';
 import Change from './change'
 
 
@@ -9,7 +9,7 @@ const mapStateToProps=(state)=>({
    
 })
 const mapDispatchToProps=dispatch=>({
-returnToCartHandler:data=>dispatch(addToCart(data))
+returnToCartHandler:data=>dispatch(addToCartReducer(data))
 
 })
 

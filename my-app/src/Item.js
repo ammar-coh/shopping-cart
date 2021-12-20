@@ -8,15 +8,17 @@ import Button from "@material-ui/core/Button";
 
 import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
-import { addToCart, updateUser, deleteDispatch } from "./redux/actions";
+import { addToCartSaga, updateUser, deleteDispatch } from "./redux/actions";
 import { FaStar } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
+import { BsTrash } from "react-icons/bs";
+import { GrUpdate } from "react-icons/gr";
 
 const useStyles = makeStyles({
   root: {
   marginLeft:'0px',
     marginTop: 90,
-width:'100%',
+width:'200px',
     height: "320px",
    
     boxSizing: 'border-box',
@@ -26,22 +28,43 @@ width:'100%',
     height: "150px",
     marginLeft: 27,
   },
+  update:{
+    fontSize:"10px",
+  marginLeft:"124px",
+  marginTop:"-32px",
+    color: "#FF9900",
+    width:"26px",
+  
+  }, 
   cart: {
-    backgroundColor: "#FF9900",
+   backgroundColor: "#FF9900",
     color: "#000000",
-    marginLeft: 12,
+    marginLeft: 42,
     fontSize: "10px",
+  
+
   },
   price: {
-    marginLeft: 13,
+    marginLeft: 15,
     fontSize: "15px",
   },
   input: {
-    width: "60px",
-    marginTop: 10,
-    marginLeft: 22,
+    width: "70px",
+    marginTop: 5,
+    marginLeft: 52,
+   
+    fontSize:"10px"
     
   },
+  del:{
+   
+
+    hover: {
+      "&:hover": {
+        cursor: 'pointer'
+      }
+  }
+}
  
 });
 const colors = {
@@ -50,6 +73,7 @@ const colors = {
 };
 
 function Item(props) {
+  const user = useSelector((state)=> state.user_login.details)
   const ratings = Array(5).fill(0);
   const [currentRating, setRating] = useState(0);
   const [currentHoverValue, setHoverValue] = useState(undefined);
@@ -104,7 +128,7 @@ function Item(props) {
           <div>
             {props.rating >= 1
               ? ratings.map((_, index) => {
-                  console.log("index", index);
+               //   console.log("index", index);
                   return (
                     <FaStar
                       key={index}
@@ -155,14 +179,14 @@ function Item(props) {
       <CardActions>
         <Button
           onClick={() =>
-            dispatch(addToCart({ image: props.image, price: props.price }))
+            dispatch(addToCartSaga({ image: props.image, price: props.price, product_id: props.id }))
           }
           className={classes.cart}
           size="small"
         >
           Add to Cart
         </Button>
-        <Button
+       { user.role == "admin" ?  <BsTrash
           onClick={() =>
             dispatch(
               deleteDispatch({
@@ -172,16 +196,19 @@ function Item(props) {
               })
             )
           }
-          className={classes.cart}
-          size="small"
-        >
-          Delete
-        </Button>
+         
+         className={classes.del}
+        /> : null
+             
+
+      }
       </CardActions>
 
-      <input className={classes.input} type="number" onChange={getPrice} />
-
-      <button
+      { user.role == "admin"? <input className={classes.input} placeholder="update price" type="number" onChange={getPrice} />:
+      null}
+      <CardActions>
+       { user.role == "admin"?
+      <GrUpdate className={classes.update}
         onClick={() =>
           dispatch(
             updateUser({
@@ -190,9 +217,13 @@ function Item(props) {
             })
           )
         }
-      >
-        click here
-      </button>
+      />: null
+        }
+      </CardActions>
+      
+      
+      {/* Update price */}
+      
     </Card>
    
   );

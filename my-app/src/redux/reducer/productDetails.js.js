@@ -8,7 +8,7 @@ export const productDetails = (state = initialState, actions) => {
     case "set":
       var check = {
         ...state,
-        details: [...actions.details, ...state.details], // check if error or problem comes
+        details: [...actions.details], // check if error or problem comes
       };
 
       return check;
@@ -57,6 +57,9 @@ export const productDetails = (state = initialState, actions) => {
       //   var newItemsAdded =
       //  console.log('final', newItemsAdded)
       return { ...state, details: [...det, item], header: "added" };
+
+
+    
 
     default:
       return state;

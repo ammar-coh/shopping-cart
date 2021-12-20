@@ -5,14 +5,14 @@ import { connect } from "react-redux";
 
 
 
-const mapStateToProps=(state)=>({
-           cart:state.checkout,
-          data:state.changedMyMind
-})
-const mapDispatchToProps=dispatch=>({
-    removefromCartHandler:data=>dispatch(removeFromCart(data))
+// const mapStateToProps=(state)=>({
+//            cart:state.checkout,
+//           data:state.changedMyMind
+// })
+// const mapDispatchToProps=dispatch=>({
+//     removefromCartHandler:data=>dispatch(removeFromCart(data))
     
-  })
+//   })
 
-  export default  connect(mapStateToProps,mapDispatchToProps)(Checkoutproduct) 
+  export default  Checkoutproduct
   

@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from "react-redux";
 import {addToSaga} from './redux/actions/index';
 import {useFormik} from 'formik';
+import Button from "@material-ui/core/Button";
+
 
 
 
@@ -19,13 +21,17 @@ const useStyles = makeStyles({
     disp:{
         marginTop:40,
     },
-    inputOne:{marginTop:10,},
-    inputTwo:{marginTop:10,
+    inputOne:{marginTop:10,
+    width:"240px"},
+    inputTwo:{width:"240px",
     },
     year:{
-          width:'160px',  
+          width:'240px',  
     },
-    click:{marginTop:10},
+    click:{marginTop:10, backgroundColor:"#FF9900",
+    color: "#000000",
+   
+    fontSize: "10px",},
 
     
   });
@@ -73,13 +79,13 @@ function Entry(props) {
 
     return (
         <div className={classes.root}>
-             <h1 className={classes.disp}> add</h1>
+             <h1 className={classes.disp}> Add New items</h1>
             <form onSubmit={formik.handleSubmit}>
-           <input className={classes.inputOne} type = 'text' onChange={formik.handleChange} value={formik.values.link} name='link'/>
+           <input className={classes.inputOne} type = 'text' onChange={formik.handleChange} value={formik.values.link} name='link' placeholder=" Image "/>
            <div> 
-           <input className={classes.inputTwo} onChange={formik.handleChange} value={formik.values.price} type = 'number'  name='price'/> 
+           <input className={classes.inputTwo} onChange={formik.handleChange} value={formik.values.price} type = 'number'  name='price' placeholder=" Price "/> 
            </div>
-           {/* <div>
+           {<div>
            <select  onChange={formik.handleChange} value={formik.values.year} className={classes.year} name='year'>
            <option value="" default selected>Year of release</option>
            <option value="1999">1999</option>
@@ -88,8 +94,8 @@ function Entry(props) {
     <option value="1994">1994</option>
     
   </select>
-           </div> */}
-           {/* <div>
+           </div> }
+           { <div>
         <select onChange={formik.handleChange} value={formik.values.ratings}className={classes.year} name='ratings'>
         <option value="" default selected>Ratings</option>
            <option  value="1">1</option>
@@ -98,12 +104,12 @@ function Entry(props) {
              <option value="4">4</option>
              <option value="5">5</option>
         </select>
-           </div> */}
+           </div> }
            <div>
          
            </div>
            <div>
-           <button className={classes.click}  type="submit" onClick={()=>dispatch(addToSaga({image:formik.values.link,price:formik.values.price,/*year:formik.values.year, rating:formik.values.ratings*/}))}>add item</button>
+           <Button className={classes.click}  type="submit" onClick={()=>dispatch(addToSaga({image:formik.values.link,price:formik.values.price,/*year:formik.values.year,*/ rating:formik.values.ratings}))}>add item</Button>
            </div>
            </form>
         </div>

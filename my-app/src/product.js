@@ -4,36 +4,45 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ItemContainer from "./ItemContainer";
 import { useSelector, useDispatch } from "react-redux";
+import { withRouter}  from 'react-router-dom';
 
-import Editing from "./editing";
+import Entry from "./newEntrry";
 const useStyles = makeStyles({
   root: {
-    display: "grid",
-    gridGap: '0px 0px',
+    display: "flex",
+    gridGap: '40px 120px',
+    marginLeft:"150px", 
    
-    gridTemplateColumns: '14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%',
-    marginLeft: 0,
+    
    
 
    
   },
 
-  edit: { border: "solid black", marginLeft: 50, width: "400px" },
-  fog: {
-    border: "solid black",
+  add_product:{
+    marginLeft: "250px",
+   
   },
+  
 });
 
 function Product() {
   const classes = useStyles();
   const details = useSelector((state) => state.productDetails.details);
   const header = useSelector((state) => state.productDetails.header);
+  const user = useSelector((state)=> state.user_login.details)
 
+  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    localStorage.getItem('authorization') && dispatch(getUser());
+   }, []);
+  
   //const {image}= details
-  console.log(details, "details");
+  //console.log(details, "details");
   return (
     <div>
-      <h1>{header}</h1>
+     
       <div className={classes.root}>
         {/*<Grid item>*/}
         {details.length > 0 &&
@@ -49,9 +58,12 @@ function Product() {
             </div>
           ))}
       </div>
+                <div className={classes.add_product}>
+                  {user.role == 'admin'? <Entry/>: null}
+                  </div>
       {/**  </Grid>*/}
     </div>
   );
 }
 
-export default Product;
+export default  Product;

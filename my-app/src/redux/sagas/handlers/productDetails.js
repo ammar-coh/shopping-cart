@@ -1,7 +1,6 @@
 import {call,put,delay} from 'redux-saga/effects';
 import { requestDestroyProduct,requestGetProduct,requestUpdateProduct, requestCreateProduct } from '../requests/productDetails';
 import { getUser, setUser, updateUserDetails,deleteDetails,addToReducer} from '../../actions/index';
-import { ContactlessOutlined } from '@material-ui/icons';
 
 
 
@@ -26,10 +25,15 @@ export function* updateInfo(action){
 
   try {
      const response = yield call(requestUpdateProduct,action.data);
-  console.log('UPDATESaga', action.data)
-  console.log(response.data.data,'response')
-
-       yield put(updateUserDetails(response.data.data))
+ // console.log('UPDATESaga', action.data)
+  console.log(response.data,'response')
+          if (response.data.error =='unable to update product'){
+            alert("authorized personnel only")
+          }
+          else{
+            yield put(updateUserDetails(response.data.data))
+          }
+     
   
 } catch (error) {
   //console.error('this is error',error)
@@ -43,7 +47,12 @@ export function* deleteInfo(action){
    const response = yield call(requestDestroyProduct,action.data)
  // const  {data} = response
   console.log(response.data, "respon")
+  if (response.data== "nothing") {
+   alert ("authorized personnel only")
+  } else {
     yield put(deleteDetails(response.data))
+  }
+   
 } catch (error) {
   
 }

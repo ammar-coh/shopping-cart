@@ -6,24 +6,72 @@ export const increment =() =>{
         
     };
 }
-export const addToCart =(data)=>{
-  console.warn('actions',data)
+
+export const getProductsToCartSaga =(data)=>{
+    // console.warn('actions',data)
+       return {
+                   type:'getProductsToCartSaga',
+                   data:data
+                  
+       }
+   }
+   export const setProductsToCartReducer =(data)=>{
+    // console.warn('actions',data)
+       return {
+                   type:'setProductsToCartReducer',
+                   data:data
+                  
+       }
+   }
+
+export const addToCartSaga =(data)=>{
+ // console.warn('actions',data)
     return {
-                type:'addToCart',
+                type:'addToCartSaga',
                 data:data
                
     }
 }
+export const addToCartReducer =(data)=>{
+    // console.warn('actions',data)
+       return {
+                   type:'addToCartReducer',
+                   data:data
+                  
+       }
+   }
 
-export const removeFromCart =(data)=>{
+
+export const removeFromCartSaga =(data)=>{
     //console.warn('actions',data)
      return {
-                 type:'removeFromCart',
+                 type:'removeFromCartSaga',
                  data:data
                  
                 
      }
  }
+
+ export const removeFromCartReducer =(data)=>{
+    //console.warn('actions',data)
+     return {
+                 type:'removeFromCartReducer',
+                 data:data
+                 
+                
+     }
+ }
+
+ export const resetCart =(data)=>{
+    //console.warn('actions',data)
+     return {
+                 type:'resetCart',
+                 data:data
+                 
+                
+     }
+ }
+ 
 
  export const getUser=(data)=>{
     return{
@@ -77,6 +125,32 @@ export const addToSaga =(data)=>{
 export const addToReducer =(data)=>{
     return {
         type:'addDetails',
+        data:data
+    }
+}
+
+export const sign_up_saga = (data) =>{
+    return {
+        type:"sign_up_saga",
+        data:data
+    }
+}
+export const sign_in_saga = (data) =>{
+        return {
+            type:"sign_in_saga",
+            data:data
+        }
+    }
+    export const getSign_In = (data) =>{
+        return {
+            type:"getSign_In",
+            data:data
+        }
+    }
+export const sign_in_reducer = (data) => {
+   // console.log("redd",data)
+    return {
+        type:"sign_in_reducer", 
         data:data
     }
 }

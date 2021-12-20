@@ -7,35 +7,66 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
     root:{
-                marginLeft:'1000px',
-                marginTop:'30px',
-                display:'flex'
+                marginLeft:'900px',
+               marginTop:'5px',
+                display:'flex',
+                top:"0px",
+            
+                width:"60px",
+                height:"40px",
+                border: "none",
+                '&:hover': {
+                  border:" 1px solid white",
+                },
+              
     },
 
     icon: {
-     color:'black',
+     color:'white',
+     marginLeft:"0px",
+     marginTop:"10px",
+    
+     width:"100px",
+    
     },
     count:{
             marginTop:'0px', 
-            color:'black',
-            textDecoration:'none'
+            color:'white',
+            textDecoration:'none',
+            margin: "0px",
+           
+            width:"5px", 
+            padding:"10px"
     },
+    checkout_link:{
+      textDecoration:"none"
+    }
    
   });
 
 function Cart() {
     const classes = useStyles()
-    const counts= useSelector((state)=> state.checkout.length)
-   
+    const counts= useSelector((state)=> state.checkout)
+   console.log("carts count",counts)
     return (
-
-        <div className={classes.root}>
-       
-           <span ><h3 className={classes.count}>{counts}</h3></span>
-           <span className={classes.icon}><AddShoppingCartIcon/></span> 
+      
+      <Link  className= {classes.checkout_link} to='/checkout'>
            
-          <Link to='/checkout'> <h2> DONE</h2></Link>
+        <div className={classes.root}>
+         
+           <h3 className={classes.count}>{typeof(counts)== "number"? counts:counts.length}</h3>
+        
+            
+           <span className={classes.icon}>
+               
+                <AddShoppingCartIcon/>
+             </span> 
+          
+          
+         
         </div>
+        </Link >
+           
     )
 }
 
