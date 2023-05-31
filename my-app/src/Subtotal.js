@@ -16,9 +16,9 @@ function Subtotal() {
    // const classes = useStyles();
     const counts= useSelector((state)=> state.checkout)
     console.log(counts)
-    var dollar = counts.map(function(i){
+    var dollar = counts.products.map(function(i){
       console.log('total',i.price)
-                return i.price
+                return i.price*i.qty
     })
     console.log(dollar)
    

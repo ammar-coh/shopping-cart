@@ -7,6 +7,56 @@ export const increment =() =>{
     };
 }
 
+export const chat =(data) =>{
+    return {
+        type: 'receive', 
+        data:data
+    };
+}
+export const chatFromDBSaga =(data) =>{
+    return {
+        type: 'chatFromDBSaga', 
+        data:data
+    };
+}
+export const clearChat = ()=>{
+    return {
+        type: 'clearChatRoom', 
+    };
+}
+
+export const createChatRoom =(data) =>{
+    return {
+        type: 'createChatRoom', 
+        data:data
+    };
+}
+export const chatFromDB =(data) =>{
+    return {
+        type: 'chat from DB', 
+        data:data
+    };
+}
+
+export const notification =(data) =>{
+    return {
+        type: 'notification_receive', 
+        data:data
+    };
+}
+
+export const notificationDB =(data) =>{
+    return {
+        type: 'notificationDB', 
+        data:data
+    };
+}
+export const notification_clear =(data) =>{
+    return {
+        type: 'clearNotificationMessages', 
+        data:data
+    };
+}
 export const getProductsToCartSaga =(data)=>{
     // console.warn('actions',data)
        return {

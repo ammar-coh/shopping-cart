@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router-dom";
-import Cart from "./components/header/Cart";
-import Sign_in from "./components/header/sign_in";
-import { sign_in_reducer, addToCartReducer, resetCart } from "./redux/actions";
+import Cart from "./Cart";
+import Sign_in from "./sign_in";
+import {
+  sign_in_reducer,
+  addToCartReducer,
+  resetCart,
+} from "../../redux/actions";
 import { AiOutlineHome } from "react-icons/ai";
-import { clearChat } from "../src/redux/actions/index";
-import Badge from "@mui/material/Badge";
-import MailIcon from "@mui/icons-material/Mail";
+import { clearChat } from "../../redux/actions/index"; //"../src/redux/actions/index";
+import Chat_Notifications from "./chat_notification";
+import Context from "../../context";
+import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -19,7 +23,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-between",
     zIndex: 3,
-    border: "2px solid blue",
+    height: "65px",
   },
 
   home_link: {
@@ -38,7 +42,8 @@ const useStyles = makeStyles({
     margin: "auto",
   },
   chatNotificationContainer: {
-    padding: "20px",
+    padding: "13px",
+    // border: "1px solid white",
   },
   // chatNotification:{color:"red"},
   notificationMailIcon: { color: "white" },
@@ -59,10 +64,20 @@ const useStyles = makeStyles({
 
 function Header({ setUserAvailable }) {
   const classes = useStyles();
+  const [list, setList] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.user_login.details);
   const [isSticky, setIsSticky] = useState(false);
+  const {
+    roomID,
+    setRoomID,
+    currentChat,
+    setCurrentChat,
+    isActive,
+    setIsActive,
+    recepient_status,
+  } = useContext(Context);
   useEffect(() => {
     const handleScroll = () => {
       setIsSticky(window.pageYOffset > 0);
@@ -75,6 +90,15 @@ function Header({ setUserAvailable }) {
     };
   }, []);
 
+  const allUsers = () => {
+    axios.get(`http://localhost:8081/users/userList`).then((response) => {
+      const allUserList = response.data;
+      setList(allUserList);
+    });
+  };
+  useEffect(() => {
+    localStorage.getItem("authorization") && allUsers();
+  }, []);
   return (
     <div
       className={classes.root}
@@ -85,6 +109,8 @@ function Header({ setUserAvailable }) {
         <Button
           onClick={() => {
             dispatch(clearChat());
+            setIsActive(false);
+            setCurrentChat("");
           }}
         >
           <Link className={classes.home_link} to="/">
@@ -98,13 +124,16 @@ function Header({ setUserAvailable }) {
       <Sign_in />
       <Cart />
       <div className={classes.chatNotificationContainer}>
-        <Badge
-          className={classes.chatNotification}
-          badgeContent={2}
-          color="error"
-        >
-          <MailIcon className={classes.notificationMailIcon} />
-        </Badge>
+        <Chat_Notifications
+          roomID={roomID}
+          setRoomID={setRoomID}
+          currentChat={currentChat}
+          setCurrentChat={setCurrentChat}
+          isActive={isActive}
+          setIsActive={setIsActive}
+          list={list}
+          recepient_status={recepient_status}
+        />
       </div>
 
       <div className={classes.signOutButtonContainer}>

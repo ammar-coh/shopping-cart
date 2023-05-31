@@ -1,69 +1,70 @@
 import React, { useEffect } from "react";
-import { getUser } from "./redux/actions/index";
+import { getUser, getProductsToCartSaga } from "./redux/actions/index";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
 import ItemContainer from "./ItemContainer";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter}  from 'react-router-dom';
+import { Route, Switch } from "react-router-dom";
+import Header from "./components/header/index";
+import checkout from "./checkout";
+import AddProduct from "./addProduct";
+import Chatroom from  "./components/chat/index"               
+import Del from "./Del";
+import Chat from "./chat";
 
-import Entry from "./newEntrry";
 const useStyles = makeStyles({
   root: {
     display: "flex",
-    gridGap: '40px 120px',
-    marginLeft:"150px", 
-   
-    
-   
-
-   
+    padding: "50px",
+    flexWrap: "wrap",
+    gap: "31px",
+    zIndex: 2,
   },
-
-  add_product:{
-    marginLeft: "250px",
-   
-  },
-  
 });
 
-function Product() {
+function Product({ setUserAvailable, socket }) {
+  const dispatch = useDispatch();
+  const uname = useSelector((state) => state.user_login.details);
+  useEffect(() => {
+    localStorage.getItem("authorization") && dispatch(getProductsToCartSaga());
+  }, [uname?.user?.displayName]);
+
   const classes = useStyles();
   const details = useSelector((state) => state.productDetails.details);
-  const header = useSelector((state) => state.productDetails.header);
-  const user = useSelector((state)=> state.user_login.details)
 
-  
-  const dispatch = useDispatch();
   useEffect(() => {
-    localStorage.getItem('authorization') && dispatch(getUser());
-   }, []);
-  
-  //const {image}= details
-  //console.log(details, "details");
+    localStorage.getItem("authorization") && dispatch(getUser());
+  }, []);
+
   return (
     <div>
-     
-      <div className={classes.root}>
-        {/*<Grid item>*/}
-        {details.length > 0 &&
-          details.map((i) => (
-            <div >
-              <ItemContainer
-                image={i?.image}
-                price={i.price}
-                year={i.year}
-                id={i.id}
-                rating={i.ratings}
-              />
-            </div>
-          ))}
-      </div>
-                <div className={classes.add_product}>
-                  {user.role == 'admin'? <Entry/>: null}
-                  </div>
-      {/**  </Grid>*/}
+      <Header setUserAvailable={setUserAvailable} />
+      <Switch>
+        <Route path="/products/add" exact component={AddProduct} />
+        <Route path="/products/del" exact component={Del} />
+        <Route path="/checkout" exact component={checkout} />
+        <Route path="/chatroom" exact component={Chatroom} />
+        <div>
+          <div className={classes.root}>
+            {details.length > 0 &&
+              details.map((i) => (
+                <div>
+                  <ItemContainer
+                    image={i?.image}
+                    price={i.price}
+                    year={i.year}
+                    id={i._id}
+                    rating={i.rating}
+                  />
+                </div>
+              ))}
+          </div>
+          <div>
+            <Chat socket={socket} />
+          </div>
+        </div>
+      </Switch>
     </div>
   );
 }
 
-export default  Product;
+export default Product;

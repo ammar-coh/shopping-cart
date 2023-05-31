@@ -1,11 +1,16 @@
 import React from "react";
 import CheckoutContainer from "./CheckoutContainer";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Subtotal from "./Subtotal";
 import Changecontainer from "./Changecontainer";
-import { getUser, sign_in_reducer, getProductsToCartSaga, getSign_In, sign_in_saga } from './redux/actions';
-
+import {
+  getUser,
+  sign_in_reducer,
+  getProductsToCartSaga,
+  getSign_In,
+  sign_in_saga,
+} from "./redux/actions";
 
 const useStyles = makeStyles({
   main: {},
@@ -45,17 +50,17 @@ const useStyles = makeStyles({
   },
   trol: {
     height: "fit-content",
-    width:'400px'
+    width: "400px",
   },
 });
 
 function Checkout() {
   const classes = useStyles();
   const counts = useSelector((state) => state.checkout);
-  console.log("almost there",counts);
-  const dispatch = useDispatch()
-  let removeDuplicate = [...counts.reduce((map, obj)=> map.set(obj.id, obj), new Map()).values()]
-  console.log("duplicate",removeDuplicate)
+  console.log("almost there", counts);
+  const dispatch = useDispatch();
+  // let removeDuplicate = [...counts.products.reduce((map, obj)=> map.set(obj.id, obj), new Map()).values()]
+  // console.log("duplicate",removeDuplicate)
 
   return (
     <div className={classes.main}>
@@ -68,21 +73,21 @@ function Checkout() {
         <div className={classes.trol}>
           <h3 className={classes.head}>Cart</h3>
           <div className={classes.pro}>
-            
-            {removeDuplicate.map((i) => (
-              <CheckoutContainer image={i.image} price={i.price} id={i.id} />
+            {counts.products.map((i) => (
+              <CheckoutContainer
+                image={i.image}
+                price={i.price}
+                id={i._id}
+                quantity={i.qty}
+              />
             ))}
           </div>
         </div>
-
-       
       </div>
     </div>
   );
 }
 
 export default Checkout;
-
-
 
 // typeof(counts) == "number"?<CheckoutContainer dis = {dispatch(getProductsToCartSaga())}/>:

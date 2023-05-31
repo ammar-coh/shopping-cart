@@ -1,10 +1,10 @@
 import axios from 'axios'; 
 
-export const requestGetProduct = ()=>{
+export const requestGetProduct = (data)=>{
     return axios.request({
         method:'get',
-        url:'http://localhost:3000/api/v1/products',
-        headers:{Authorization: `Bearer ${localStorage.getItem('authorization')}`}
+        url:'http://localhost:8081/products/list',
+        headers:{Authorization: ` ${localStorage.getItem('authorization')}`}
 
     })
 }
