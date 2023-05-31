@@ -1,6 +1,6 @@
 
 
-import Entry from './newEntrry'
+import Entry from './chat'
 
 
 

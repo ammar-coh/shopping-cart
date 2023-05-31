@@ -15,15 +15,15 @@ const useStyles = makeStyles({
 function Subtotal() {
    // const classes = useStyles();
     const counts= useSelector((state)=> state.checkout)
-    //console.log(counts)
-    var dollar = counts.map(function(i){
-      console.log('total',i.cart.price)
-                return i.cart.price
+    console.log(counts)
+    var dollar = counts.products.map(function(i){
+      console.log('total',i.price)
+                return i.price*i.qty
     })
-    //console.log(dollar)
+    console.log(dollar)
    
     const sum = dollar.reduce((a,b)=>a+b,0)
-    //console.log(sum)
+    console.log(sum)
      const total = sum
     return (
         <div>

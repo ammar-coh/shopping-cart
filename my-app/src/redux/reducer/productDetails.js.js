@@ -8,41 +8,28 @@ export const productDetails = (state = initialState, actions) => {
     case "set":
       var check = {
         ...state,
-        details: [...actions.details, ...state.details], // check if error or problem comes
+        details: [...actions.details], // check if error or problem comes
       };
 
       return check;
 
     case "updateDetails":
+      console.log("updatePrice", actions.data)
       console.log("initialState", state);
-      console.log("ratingReducer", actions.data);
+      console.log("updatepriceReducer", actions.data);
       let findIndex = state.details.findIndex(
         (item) => item.id === actions.data.id
       );
-      // console.log(findIndex);
-      // let findIndexRate = state.details.findIndex((item) => item.rating);
-      // console.log("RatingIndex", findIndexRate);
-      //   state.details[findIndex] = {...state.details[findIndex], ...actions.data}
-      //let newDetails=[...state.details, state.details[findIndex].price=actions.data.price ]
-      //let updateRatings =[...state.details,state.details[findIndexRate].rating=actions.data.rate]
-      //console.log([updateRatings],'updated')
-        let update = state.details.map(el=> {
-          return el.id ===  actions.data.id ? {...el, ...actions.data} : el
-        })
+
+      let update = state.details.map(el => {
+        return el.id === actions.data.id ? { ...el, ...actions.data } : el
+      })
       console.log("details new", update)
       return {
         ...state,
-        details : update
-        // details:
-        //   actions.data.id === undefined
-        //     ? [
-        //         ...state.details,
-        //         (state.details[findIndexRate].rating = actions.data.rate),
-        //       ]
-        //     : [
-        //         ...state.details,
-        //         (state.details[findIndex].price = actions.data.price),
-        //       ],
+        details: update
+
+
       };
 
     case "deleteDetails":
@@ -61,15 +48,18 @@ export const productDetails = (state = initialState, actions) => {
       console.log("initial state", state.details);
       var item = actions.data;
       //console.log('item', item)
-      var total = state.details.length + 1;
-      console.log("total", total);
-      item.id = total;
-      console.log("newItem", item);
+      //var total = state.details.length + 1;
+      //console.log("total", total);
+      //item.id = total;
+      //console.log("newItem", item);
       var det = state.details;
       console.log("det", det);
       //   var newItemsAdded =
       //  console.log('final', newItemsAdded)
       return { ...state, details: [...det, item], header: "added" };
+
+
+    
 
     default:
       return state;

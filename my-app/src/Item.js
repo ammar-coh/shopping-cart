@@ -8,53 +8,69 @@ import Button from "@material-ui/core/Button";
 
 import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
-import { addToCart, updateUser, deleteDispatch } from "./redux/actions";
+import { addToCartSaga, updateUser, deleteDispatch } from "./redux/actions";
 import { FaStar } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
+import { BsTrash } from "react-icons/bs";
+import { GrUpdate } from "react-icons/gr";
 
 const useStyles = makeStyles({
   root: {
-  marginLeft:'0px',
-    marginTop: 90,
-width:'100%',
-    height: "320px",
-   
-    boxSizing: 'border-box',
+    marginLeft: "0px",
+    width:"100%",
+    zIndex: 1,
   },
   media: {
     width: "90px",
     height: "150px",
     marginLeft: 27,
+    zIndex: 2,
+  },
+  update: {
+    fontSize: "10px",
+    marginLeft: "124px",
+    marginTop: "-32px",
+    color: "#FF9900",
+    width: "26px",
   },
   cart: {
     backgroundColor: "#FF9900",
     color: "#000000",
-    marginLeft: 12,
+    marginLeft: 42,
     fontSize: "10px",
+    zIndex: 1,
   },
   price: {
-    marginLeft: 13,
+    marginLeft: 15,
     fontSize: "15px",
+    zIndex: 1,
   },
   input: {
-    width: "60px",
-    marginTop: 10,
-    marginLeft: 22,
-    
+    width: "70px",
+    marginTop: 5,
+    marginLeft: 52,
+
+    fontSize: "10px",
   },
- 
+  del: {
+    hover: {
+      "&:hover": {
+        cursor: "pointer",
+      },
+    },
+  },
 });
 const colors = {
   orange: "#FFBA5A",
   grey: "#a9a9a9",
 };
 
-function Item(props) {
+function Item({ id, image, price, rating, year }) {
+  const user = useSelector((state) => state.user_login.details);
   const ratings = Array(5).fill(0);
   const [currentRating, setRating] = useState(0);
   const [currentHoverValue, setHoverValue] = useState(undefined);
-  const [rats, setRats] = useState(props.rating);
-  //console.log(rats)
+  const [rats, setRats] = useState(rating);
   const handleRats = (value) => {
     setRats(value);
   };
@@ -71,47 +87,49 @@ function Item(props) {
   };
   const classes = useStyles();
   //const dispatch = useDispatch();
-  const [price, setPrice] = useState();
+  const [newPrice, setNewPrice] = useState();
   const dispatch = useDispatch();
   const dispatchTwo = useDispatch();
   //  const details=useSelector((state)=>state.productDetails.details);
 
   //console.log ('data',data)
   const getPrice = (event) => {
-    setPrice(event.target.value);
+    setNewPrice(event.target.value);
   };
   //console.warn('props',props)
 
   //const dispatch=useDispatch()
   //const add=useDispatch()
-  var a = parseInt(price);
+  var a = parseInt(newPrice);
   //console.log('number',a)
 
   return (
-  
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={props.image}
+          image={image}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h7" component="h2">
-            {props.year}
+            {year}
           </Typography>
 
           <div>
-            {props.rating >= 1
+            {rating >= 1
               ? ratings.map((_, index) => {
-                  console.log("index", index);
+                  //   console.log("index", index);
                   return (
                     <FaStar
                       key={index}
                       style={{ cursor: "cursor", marginRight: 10 }}
-                      color={props.rating > index ? colors.orange : colors.grey}
+                      color={rating > index ? colors.orange : colors.grey}
                       onClick={
-                        () => dispatchTwo(updateUser({ rating: index + 1,id: props.id }))
+                        () =>
+                          dispatchTwo(
+                            updateUser({ ratings: index + 1, id: id })
+                          )
                         //handleClickRat(index +1)
                       }
                       onHover={() => handleHover(index + 1)}
@@ -129,7 +147,10 @@ function Item(props) {
                           ? colors.orange
                           : colors.grey
                       }
-                      onClick={() => handleClickRat(index + 1)}
+                      /*onClick={() => handleClickRat(index + 1)}*/
+                      onClick={() =>
+                        dispatchTwo(updateUser({ ratings: index + 1, id: id }))
+                      }
                       onHover={() => handleHover(index + 1)}
                       onMouseLeave={handleMouseLeave}
                     />
@@ -143,7 +164,7 @@ function Item(props) {
             variant="h7"
             component="h2"
           >
-            Price $ {props.price}
+            Price $ {price}
           </Typography>
           {/**  <Typography variant="body2" color="textSecondary" component="p">
             Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
@@ -154,46 +175,49 @@ function Item(props) {
       <CardActions>
         <Button
           onClick={() =>
-            dispatch(addToCart({ image: props.image, price: props.price }))
+            dispatch(addToCartSaga({ id: user.user.id, product_id: id }))
           }
           className={classes.cart}
           size="small"
         >
           Add to Cart
         </Button>
-        <Button
-          onClick={() =>
-            dispatch(
-              deleteDispatch({
-                image: props.image,
-                price: props.price,
-                id: props.id,
-              })
-            )
-          }
-          className={classes.cart}
-          size="small"
-        >
-          Delete
-        </Button>
+        {user.role == "admin" ? (
+          <BsTrash
+            onClick={() =>
+              dispatch(deleteDispatch({ id: user.user.id, product_id: id }))
+            }
+            className={classes.del}
+          />
+        ) : null}
       </CardActions>
 
-      <input className={classes.input} type="number" onChange={getPrice} />
+      {user.role == "admin" ? (
+        <input
+          className={classes.input}
+          placeholder="update price"
+          type="number"
+          onChange={getPrice}
+        />
+      ) : null}
+      <CardActions>
+        {user.role == "admin" ? (
+          <GrUpdate
+            className={classes.update}
+            onClick={() =>
+              dispatch(
+                updateUser({
+                  id: id,
+                  price: a,
+                })
+              )
+            }
+          />
+        ) : null}
+      </CardActions>
 
-      <button
-        onClick={() =>
-          dispatch(
-            updateUser({
-              id: props.id,
-              price: a,
-            })
-          )
-        }
-      >
-        click here
-      </button>
+      {/* Update price */}
     </Card>
-   
   );
 }
 
