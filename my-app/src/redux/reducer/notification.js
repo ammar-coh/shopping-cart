@@ -4,7 +4,7 @@ export const notification = (state = initialState, actions) => {
   switch (actions.type) {
    
     case "notification_receive":
-      console.log("cjhed", actions.type)
+      console.log("cjhed", actions.data)
       state = [...state, actions.data];
       return state;
 

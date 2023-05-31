@@ -49,11 +49,11 @@ function App() {
     setIsOpen(!isOpen);
   };
   useEffect(() => {
-    socket.on("notification_receive", async (data) => {
+    socket.on("notification_message", async (data) => {
       console.log("notification messge received", data);
       // await dispatch(notification(data));
     });
-  }, [])
+  }, []);
   return (
     <div className="app">
       {

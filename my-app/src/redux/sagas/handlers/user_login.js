@@ -1,6 +1,7 @@
 import { call, put, delay } from "redux-saga/effects";
 import { requestPostSign_In, requestPostSign_Up } from "../requests/user_login";
 import { sign_in_reducer } from "../../actions/index";
+import { socket } from "../../../socket";
 
 export function* postSign_Up(action) {
   if (action.data.password.length >= 8) {
@@ -26,6 +27,7 @@ export function* postSign_In(action) {
     } else {
       alert(`sss`);
     }
+    socket.emit("setUserId", {userId :data.user.id});
 
     localStorage.setItem("for_reducer", JSON.stringify(response.data));
     localStorage.setItem("authorization", response.data.token);
